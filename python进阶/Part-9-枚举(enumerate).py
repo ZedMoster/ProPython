@@ -12,5 +12,5 @@ for c, value in enumerate(my_list, 1):  # 可选参数允许我们定制从哪�
 
 # 创建包含索引的元组列表
 my_list = ['apple', 'banana', 'grapes', 'pear']
-counter_list = list(enumerate(my_list, 1))
+counter_list = list(enumerate(my_list, 100))
 print(counter_list)

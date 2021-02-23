@@ -13,15 +13,15 @@ from functools import wraps
 # ### 装饰器类
 # 类也可以用来构建装饰器。那我们现在以一个类而不是一个函数的方式，来重新构建 log_it。
 
-class logit(object):
+class log_it(object):
     def __init__(self, logfile='out.log'):
         self.logfile = logfile
     
     def __call__(self, func):
         @wraps(func)
         def wrapped_function(*args, **kwargs):
-            self.save(func.__name__ + " was called")
-            self.notify()
+            self.save(func.__name__ + " is Running")
+            self.notification()
             return func(*args, **kwargs)
         
         return wrapped_function
@@ -29,11 +29,12 @@ class logit(object):
     def save(self, log_string):
         print("保存日志：{0}\n日志内容：{1}".format(self.logfile, log_string))
     
-    def notify(self):
+    @staticmethod
+    def notification():
         print("通知消息：已保存")
 
 
-@logit()
+@log_it()
 def add(a, b):
     return a + b
 

@@ -124,7 +124,7 @@ print(p0)
 Point = namedtuple("Point", ["X", "Y", "Z"])
 p1 = Point(1, 0, 0)
 print(p1)
-print(p1._asdict())  # 讲命名元组转换为字典
+print(p1._asdict())  # 将命名元组转换为字典
 
 
 # * enum.Enum (Python 3.4+)

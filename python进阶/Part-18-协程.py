@@ -18,18 +18,24 @@ def fib():
 # 创建协程
 def grep(pattern):
     print("Searching for", pattern)
+    print("=" * 30)
     while True:
         line = (yield)
         if pattern in line:
             print(line)
 
 
-# 启动一个协程
+# 创建协程
 search = grep('love')
-print(next(search))
+# 启动协程
+next(search)
+
 # send()方法向它传值
+search.send("No keyword no send")
+# 包含内容
 search.send("I love you")
 search.send("Don't you love me?")
 search.send("I love coroutine instead!")
+
 # 关闭一个协程
 search.close()
