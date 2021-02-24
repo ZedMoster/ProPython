@@ -20,6 +20,7 @@ print(type(dict))
 print(type(3))
 
 name = "tom"
+# print(dir(name))
 print(id(name))
 
 # # inspect模块
