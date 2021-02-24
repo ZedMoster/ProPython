@@ -6,7 +6,9 @@
 # # lambda表达式（匿名函数）
 # 语法：lambda 参数:操作(参数)
 
-add = lambda x, y: x + y
+def add(x, y): return x + y
+
+
 print(add(3, 5))
 
 # * 列表排序

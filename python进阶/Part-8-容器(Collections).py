@@ -47,7 +47,11 @@ print(favourite_colours)
 # # KeyError: 'colours'
 
 # 创建一个数据类型
-tree = lambda: collections.defaultdict(tree)
+
+
+def tree(): return collections.defaultdict(tree)
+
+
 some_dict = tree()
 print(some_dict)  # defaultdict(<function <lambda> at 0x0000029724BB6438>, {})
 some_dict['colours']['favourite'] = "yellow"

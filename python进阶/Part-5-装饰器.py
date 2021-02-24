@@ -16,19 +16,19 @@ from functools import wraps
 class log_it(object):
     def __init__(self, logfile='out.log'):
         self.logfile = logfile
-    
+
     def __call__(self, func):
         @wraps(func)
         def wrapped_function(*args, **kwargs):
             self.save(func.__name__ + " is Running")
             self.notification()
             return func(*args, **kwargs)
-        
+
         return wrapped_function
-    
+
     def save(self, log_string):
         print("保存日志：{0}\n日志内容：{1}".format(self.logfile, log_string))
-    
+
     @staticmethod
     def notification():
         print("通知消息：已保存")

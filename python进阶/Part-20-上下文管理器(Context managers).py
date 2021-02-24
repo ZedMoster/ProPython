@@ -8,6 +8,7 @@
 # 上下文管理器的一个常见用例，是资源的加锁和解锁，以及关闭已打开的文件
 
 # with语句
+from contextlib import contextmanager
 with open('some_file', 'w') as opened_file:
     opened_file.write('hello!')
 
@@ -59,8 +60,6 @@ with File('demo.txt', 'w') as opened_file:
 
 # ## 基于生成器的实现
 # ### contextlib模块
-
-from contextlib import contextmanager
 
 
 @contextmanager

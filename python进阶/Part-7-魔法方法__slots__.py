@@ -20,4 +20,3 @@ m = MyClass("Tom", 20)
 
 print(m.name)
 print(m.age)
-

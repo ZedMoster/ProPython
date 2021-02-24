@@ -15,6 +15,7 @@ python - m http.server       # Python 3
 '''
 
 # ## 漂亮的打印
+import itertools
 from pprint import pprint
 
 my_dict = {'name': 'Yasoob', 'age': 'undefined', 'personality': 'awesome'}
@@ -37,7 +38,6 @@ python -c "import csv,json;print json.dumps(list(csv.reader(open('csv_file.csv')
 
 # ## 列表辗平 （拍平一次）
 # 使用 itertools 包中的 itertools.chain.from_iterable 轻松快速的辗平一个列表。
-import itertools
 
 a_list = [[1, 2], [3, 4], [5, 6], [[10]]]
 
@@ -52,7 +52,8 @@ print(list(itertools.chain(*a_list)))
 class A(object):
     def __init__(self, a, b, c):
         self.a = a
-        self.__dict__.update({k: v for k, v in locals().items() if k != 'self'})
+        self.__dict__.update(
+            {k: v for k, v in locals().items() if k != 'self'})
         # self.b = b
         # self.c = c
 
