@@ -1,4 +1,6 @@
-# -*- coding: UTF-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import datetime
 import pymongo
 import pandas as pd
@@ -18,8 +20,11 @@ def fund_to_shell(msg):
     else:
         res = byword.split("+")
         grade = fund_to_grade_now(byword.split("+")[0])
-        return "基金id:{0}\n收益:{1}\n估值:{2}\n\n可卖出份额:{3}".format(res[0], res[1], grade,
-                                                              round(float(res[1]) / float(grade)))
+        return "基金id:{0}\n收益:{1}\n估值:{2}\n\n可卖出份额:{3}".format(res[0], res[1],
+                                                              grade,
+                                                              round(float(res[
+                                                                              1]) / float(
+                                                                  grade)))
 
 
 def fund_to_grade_now(Id):

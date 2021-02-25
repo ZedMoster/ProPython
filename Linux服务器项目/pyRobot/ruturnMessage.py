@@ -1,17 +1,18 @@
 # coding:utf-8
-# 导入所有库
-from allData.__main import *
+
+from allData import *
 import os
 
 # 技能值
-keyOne = '目前技能值：\n<python程序设计>\n<Revit api开发>\n<还有其他乱七八糟的....>\n{}\n[666][666][666]\n\n'.format('-' * 18)
+keyOne = '目前技能值：\n<python程序设计>\n<Revit api开发>\n<还有其他乱七八糟的....>\n{}\n[666][666][666]\n\n'.format(
+        '-' * 18)
 
 
 # 关注后回复的消息
 @robot.subscribe
 def subscribe(message):
     return '/:sun 嘿 你好~\n{}/:sun我现在支持一些有趣的功能\n/:sun比如给我发送的图片中有文字\n/:sun会自动把它识别出来\n/:sun其他功能可以尝试回复\n[666][666][666]\n\n【关键字】\n【好用不火】【资源】'.format(
-        keyOne)
+            keyOne)
 
 
 # 获取关键词信息
@@ -58,7 +59,9 @@ def baiduImage(message):
         text = word["words"] + '\n'
         words += text
     '''输出全部文字内容'''
-    ruSult = "✨启用图片文字OCR功能\n✨识别结果总行数: {}\n✨文字内容如下:↓↓\n{}\n{}".format(num, '-' * 35, words)
+    ruSult = "✨启用图片文字OCR功能\n✨识别结果总行数: {}\n✨文字内容如下:↓↓\n{}\n{}".format(num,
+                                                                     '-' * 35,
+                                                                     words)
     return ruSult
 
 
@@ -78,20 +81,20 @@ def translate(message):
     else:
         url = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule"
         form_data = {
-            "i": byword,
-            "from": " AUTO",
-            "to": "AUTO",
+            "i"          : byword,
+            "from"       : " AUTO",
+            "to"         : "AUTO",
             "smartresult": "dict",
-            "client": "fanyideskweb",
-            "salt": "15611131688671",
-            "sign": "5811158cc65ce06a3a4ced077ab3839b",
-            "ts": "1561113168867",
-            "bv": "9d1e6a4f9d4241fb7947f623cc9e4efa",
-            "doctype": "json",
-            "version": "2.1",
-            "keyfrom": "fanyi.web",
-            "action": "FY_BY_REALTlME"
-            }
+            "client"     : "fanyideskweb",
+            "salt"       : "15611131688671",
+            "sign"       : "5811158cc65ce06a3a4ced077ab3839b",
+            "ts"         : "1561113168867",
+            "bv"         : "9d1e6a4f9d4241fb7947f623cc9e4efa",
+            "doctype"    : "json",
+            "version"    : "2.1",
+            "keyfrom"    : "fanyi.web",
+            "action"     : "FY_BY_REALTlME"
+        }
         # 请求表单数据
         response = requests.post(url, data=form_data)
         # 将json格式字符串转字典
@@ -121,7 +124,7 @@ def AIquak(message):
 def movieThunder(message):
     msg = message.content
     word = dytt(msg)
-
+    
     if word != None:
         return word
     else:
@@ -239,61 +242,71 @@ def MicrosoftEdgeSetup_app(message):
 # keyworld-weixin2-2020-03-26
 @robot.filter('weixin2')
 def weixin2_app(message):
-    return keyWord('微信多开工具及源码下载', 'https://pan.baidu.com/s/1wCNG195MFLIAAs533V3zrg', 'h0q9')
+    return keyWord('微信多开工具及源码下载',
+                   'https://pan.baidu.com/s/1wCNG195MFLIAAs533V3zrg', 'h0q9')
 
 
 # keyworld-svp4-2020-03-26
 @robot.filter('svp4')
 def svp4_app(message):
-    return keyWord('svp4插帧软件下载配合potplayer', 'https://pan.baidu.com/s/1pSsiVq6CyRN4PquGJS3KZg', '2g5e')
+    return keyWord('svp4插帧软件下载配合potplayer',
+                   'https://pan.baidu.com/s/1pSsiVq6CyRN4PquGJS3KZg', '2g5e')
 
 
 # keyworld-svp4-2020-04-16
 @robot.filter('potplayer')
 def PotPlayer(message):
-    return keyWord('potplayer播放器安装包下载配合svp4', 'https://pan.baidu.com/s/19_muL9f_kpS3NZnx9iNEcQ', 'rt1q')
+    return keyWord('potplayer播放器安装包下载配合svp4',
+                   'https://pan.baidu.com/s/19_muL9f_kpS3NZnx9iNEcQ', 'rt1q')
 
 
 # keyworld-网易云-2019-10-09
 @robot.filter('网易云')
 def wangYiYun(message):
-    return keyWord('网易云灰色歌单资料下载', 'https://pan.baidu.com/s/1m1kbYLk3_nU5QGKSgLA--w', 'z5dg')
+    return keyWord('网易云灰色歌单资料下载',
+                   'https://pan.baidu.com/s/1m1kbYLk3_nU5QGKSgLA--w', 'z5dg')
 
 
 # keyworld-python-2019-10-09
 @robot.filter('python')
 def KEYpython(message):
-    return keyWord('学习python可以加入这个小组 一起学习', 'https://www.yuque.com/groups/pythonlearn/join?token=1h3qPS3e8bv14ZT7')
+    return keyWord('学习python可以加入这个小组 一起学习',
+                   'https://www.yuque.com/groups/pythonlearn/join?token=1h3qPS3e8bv14ZT7')
 
 
 # keyworld-onedrive-2019-10-09
 @robot.filter('oneDrive')
 def KEYonedrive(message):
-    return keyWord('获取oneDrive 5T网盘账户及使用方式', 'https://mp.weixin.qq.com/s/ETl1KknQIaRLqrINdNBHxw')
+    return keyWord('获取oneDrive 5T网盘账户及使用方式',
+                   'https://mp.weixin.qq.com/s/ETl1KknQIaRLqrINdNBHxw')
 
 
 # keyworld-ppt模板-2019-01-09
 @robot.filter('pptx')
 def KEYppt(message):
-    return keyWord('网络整理3000+ PPT模板百度云下载地址', 'https://pan.baidu.com/s/1GWfLR_6RleL-wc_rQ2vN6w', '3ztk')
+    return keyWord('网络整理3000+ PPT模板百度云下载地址',
+                   'https://pan.baidu.com/s/1GWfLR_6RleL-wc_rQ2vN6w', '3ztk')
 
 
 # keyworld-系统激活-2019-01-09
 @robot.filter('系统激活')
 def KEYwindows(message):
-    return keyWord('管理员运行激活windows系统工具 重装系统也不过期', 'https://pan.baidu.com/s/18w7d9ewuHufxlqL6gT8sTw', 'kwmn')
+    return keyWord('管理员运行激活windows系统工具 重装系统也不过期',
+                   'https://pan.baidu.com/s/18w7d9ewuHufxlqL6gT8sTw', 'kwmn')
 
 
 # keyworld-aria2c-2019-01-09
 @robot.filter('aria2c')
 def KEYaria2c(message):
-    return keyWord('Aria2 命令行下载神器，不限速', 'https://pan.baidu.com/s/1z7q0xCiHnWVwi34F7XAlEQ', '3cbb')
+    return keyWord('Aria2 命令行下载神器，不限速',
+                   'https://pan.baidu.com/s/1z7q0xCiHnWVwi34F7XAlEQ', '3cbb')
 
 
 # keyworld-壁纸-2019-01-09
 @robot.filter('壁纸')
 def KEYpaper(message):
-    return keyWord('无水印超清壁纸百度云下载', 'https://pan.baidu.com/s/1bFVG70P4ubbCZYXBXALOVg', 'ehul')
+    return keyWord('无水印超清壁纸百度云下载',
+                   'https://pan.baidu.com/s/1bFVG70P4ubbCZYXBXALOVg', 'ehul')
 
 
 # keyworld-ffmpeg-2019-01-09
@@ -306,28 +319,32 @@ def KEYffmpeg(message):
 @robot.location
 def location_msg(message):
     url = hybh()
-    word = '{}/:coffee您发送了一条位置消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(keyOne) + url
+    word = '{}/:coffee您发送了一条位置消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(
+            keyOne) + url
     return word
 
 
 @robot.link
 def link_msg(message):
     url = hybh()
-    word = '{}/:coffee您发送了一条链接消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(keyOne) + url
+    word = '{}/:coffee您发送了一条链接消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(
+            keyOne) + url
     return word
 
 
 @robot.voice
 def voice_msg(message):
     url = hybh()
-    word = '{}/:coffee您发送了一条语音消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(keyOne) + url
+    word = '{}/:coffee您发送了一条语音消息\n\n/:coffee点击下方蓝色文字查看使用方式\n'.format(
+            keyOne) + url
     return word
 
 
 # text消息回复
 @robot.text
 def replayText(message):
-    word = '{}/:li还没有相关功能\n/:li确认一下【关键字】【资源】\n/:li点击下方蓝色文字查看使用方式\n\n'.format(keyOne) + hybh()
+    word = '{}/:li还没有相关功能\n/:li确认一下【关键字】【资源】\n/:li点击下方蓝色文字查看使用方式\n\n'.format(
+            keyOne) + hybh()
     return word
 
 

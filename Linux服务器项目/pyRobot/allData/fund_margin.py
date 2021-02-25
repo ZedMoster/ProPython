@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import re
 import pymongo
 import requests
@@ -19,12 +22,15 @@ def GetFundMoney(msg):
         data = name.split()
         # 全参数调用
         if len(data) == 4:
-            return GetHowMoney(float(data[0]), float(data[1]), float(data[2]), float(data[3]))
+            return GetHowMoney(float(data[0]), float(data[1]), float(data[2]),
+                               float(data[3]))
         elif len(data) == 3:
             if float(data[2]) < 0:
-                return GetHowMoney(float(data[0]), float(data[1]), r=float(data[2]))
+                return GetHowMoney(float(data[0]), float(data[1]),
+                                   r=float(data[2]))
             else:
-                return GetHowMoney(float(data[0]), float(data[1]), s=float(data[2]))
+                return GetHowMoney(float(data[0]), float(data[1]),
+                                   s=float(data[2]))
         # 默认参数 r s
         else:
             return GetHowMoney(float(data[0]), float(data[1]))
@@ -47,9 +53,11 @@ def GetHowMoney(money, lossMoney, r=-0.03, s=0.10):
     grade = "%.2f%%" % (_grade * 100)
     _r = "%.2f%%" % (r * 100)
     _s = "%.2f%%" % (s * 100)
-    result = "本金：{}\n持有收益率：{}\n负收益率限值：{}\n正收益率限值：{}\n{}\n".format(_sum, grade, _r, _s, "-" * 24)
+    result = "本金：{}\n持有收益率：{}\n负收益率限值：{}\n正收益率限值：{}\n{}\n".format(_sum, grade,
+                                                                  _r, _s,
+                                                                  "-" * 24)
     # 收益率位置 -0.03
-
+    
     # 需要补仓
     if _grade <= r:
         tip = "-*-需要补仓-*-\n买入金额："

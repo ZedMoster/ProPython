@@ -1,4 +1,6 @@
-# -*- coding: UTF-8 -*-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import smtplib
 import datetime
 from email.mime.text import MIMEText
@@ -14,12 +16,13 @@ now = datetime.datetime.now()
 strTime = str(now.strftime('%Y-%m-%d'))
 strToday = str(now.strftime('%Y-%m-%d %H:%M:%S'))
 
+
 def sendEmail(key_word, grade, to_user):
     # 发件人邮箱账号
     my_sender = '1505636116@qq.com'
     # 发件人邮箱密码
     my_pass = 'iozvbqauvbkebaha'
-
+    
     # 邮件标题
     subject = strTime + '-以下已关注基金跌超预期值'
     # subject = "bug 测试修复中"
@@ -30,7 +33,7 @@ def sendEmail(key_word, grade, to_user):
     message['To'] = Header(title_email, 'utf-8')
     message['Subject'] = Header(subject, 'utf-8')
     message.attach(MIMEText(key_word, 'plain', 'utf-8'))
-
+    
     # 发送邮件
     try:
         server = smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是25
@@ -45,15 +48,16 @@ def sendEmail(key_word, grade, to_user):
 
 # 连接mydb数据库
 def fund_to_client(mycol):
-    data = mycol.find({},{'_id':0})
+    data = mycol.find({}, {'_id': 0})
     return list(data)
 
+
 def fund_to_guzhi(byword):
-    global grade
     key_word = ''
     send_key = False
     # mongodb服务的地址和端口号
-    my_Client = pymongo.MongoClient('mongodb://root:root.1234@111.229.98.184:27017')
+    my_Client = pymongo.MongoClient(
+            'mongodb://root:root.1234@111.229.98.184:27017')
     # my_Client = pymongo.MongoClient('mongodb://long:ailong.123@111.229.98.184:27017')
     # 连接到 天天基金 数据库
     my_db = my_Client['fund_data']
@@ -67,9 +71,11 @@ def fund_to_guzhi(byword):
             grade = 0
         try:
             data = my_col.find(myquery)[0]
-            result = '基金代码：{}\n基金名称：{}\n净值估算：{}\n\n'.format(word['code'],data['基金名称'],data['估增长率'])
+            result = '基金代码：{}\n基金名称：{}\n净值估算：{}\n\n'.format(word['code'],
+                                                            data['基金名称'],
+                                                            data['估增长率'])
             rate = float(data['估增长率'].strip('%'))
-
+            
             if rate <= grade:
                 send_key = True
                 key_word += result
@@ -77,12 +83,13 @@ def fund_to_guzhi(byword):
                 pass
         except:
             key_word += '建议删除此基金代码: {}\n\n'.format(word['code'])
-    return key_word.strip('\n\n'), send_key
+    return key_word.strip('\n\n'), send_key, grade
+
 
 if __name__ == '__main__':
     # mongodb服务的地址和端口号
-    my_Client = pymongo.MongoClient('mongodb://root:root.1234@111.229.98.184:27017')
-    # my_Client = pymongo.MongoClient('mongodb://long:ailong.123@111.229.98.184:27017')
+    my_Client = pymongo.MongoClient(
+            'mongodb://root:root.1234@111.229.98.184:27017')
     # 连接到 基金用户 数据库
     my_db = my_Client["fund_login"]
     # 返回连接到db数据库
@@ -93,10 +100,10 @@ if __name__ == '__main__':
         to_user = []
         # 必须列表形式
         to_user.append(login)
-
+        
         mycol = my_db[login]
         code_list = fund_to_client(mycol)
-        key_word,send_key = fund_to_guzhi(code_list)
+        key_word, send_key, grade = fund_to_guzhi(code_list)
         
         # print(key_word)
         if send_key:

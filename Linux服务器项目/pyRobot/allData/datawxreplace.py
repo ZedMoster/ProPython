@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # 回复带链接的消息模板
 def keyWord(word=None, url=None, keys=None):
     '''回复带链接的消息模板'''
@@ -16,7 +19,8 @@ def keyStr(word=None):
 
 # 回复公众号使用方式
 def hybh():
-    kiss = keyWord('✨好用不火的使用方式', 'https://mp.weixin.qq.com/s/dHP5Q3esmMhPvrPhicOYWQ')
+    kiss = keyWord('✨好用不火的使用方式',
+                   'https://mp.weixin.qq.com/s/dHP5Q3esmMhPvrPhicOYWQ')
     return kiss
 
 
@@ -34,7 +38,9 @@ def quark(word=None, url=None):
 
 
 if __name__ == '__main__':
-    s1 = keyWord('获取oneDrive 5T网盘账户及使用方式', 'https://mp.weixin.qq.com/s/ETl1KknQIaRLqrINdNBHxw')
+    s1 = keyWord('获取oneDrive 5T网盘账户及使用方式',
+                 'https://mp.weixin.qq.com/s/ETl1KknQIaRLqrINdNBHxw')
     print(s1)
-    s2 = keyWord('office2019百度云盘下载地址', 'https://pan.baidu.com/s/1Oi26jZs7jUkqhKqVapkrhg', 'phwa')
+    s2 = keyWord('office2019百度云盘下载地址',
+                 'https://pan.baidu.com/s/1Oi26jZs7jUkqhKqVapkrhg', 'phwa')
     print(s2)

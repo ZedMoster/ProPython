@@ -1,5 +1,6 @@
-# coding:utf-8
-# 音乐列表信息获取
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import requests
 import pymongo
 import json
@@ -25,7 +26,9 @@ def music_flac(msg):
         else:
             word = '歌名【{}】总计 {} 首\n\n'.format(name, len(date))
             for i in date:
-                keyword = '歌名:{}\n歌手:{}\n下载:{}\n\n'.format(i['name'], i['author'], i['down'])
+                keyword = '歌名:{}\n歌手:{}\n下载:{}\n\n'.format(i['name'],
+                                                           i['author'],
+                                                           i['down'])
                 word += keyword
             return word.strip('\n\n')
 

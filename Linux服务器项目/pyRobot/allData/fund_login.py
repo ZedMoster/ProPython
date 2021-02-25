@@ -1,4 +1,6 @@
-# coding:utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import pymongo
 from .to_clientDB import to_clientDB
 
@@ -14,7 +16,7 @@ def fund_login_txt(msg=None):
         # 默认值 0.0
         rate = 0
         byword = msg.strip('login')
-
+    
     if byword == '':
         return None, None, None, None
     else:
@@ -36,12 +38,12 @@ def fund_login_to_data(data, rate):
     many_dic = []
     for d in data:
         result = {
-            '_id': d,
+            '_id' : d,
             'code': d,
             'rate': rate,
-            }
+        }
         many_dic.append(result)
-
+    
     return many_dic
 
 
@@ -78,8 +80,9 @@ def fund_login(msg):
         else:
             return '用户：{}\n\n{}\n基金ID删除成功'.format(user, word)
     except Exception as e:
-        return '<a href={1}>{0}</a>'.format('✨请查看功能介绍-login QQ邮箱地址+基金ID\n' + str(e),
-                                            'https://mp.weixin.qq.com/s/dHP5Q3esmMhPvrPhicOYWQ')
+        return '<a href={1}>{0}</a>'.format(
+            '✨请查看功能介绍-login QQ邮箱地址+基金ID\n' + str(e),
+            'https://mp.weixin.qq.com/s/dHP5Q3esmMhPvrPhicOYWQ')
 
 
 if __name__ == '__main__':

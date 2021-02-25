@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import re
 import pymongo
 import requests
@@ -20,7 +23,7 @@ def getCaptcha(msg):
         now_time = datetime.datetime.now().strftime('%Y-%m-%d')
         timeStr = str(time.time())
         captcha = timeStr[-4:]
-
+        
         my_col = to_clientDB("RevitUser", "userInfo")
         dateIn = list(my_col.find({}, {"_id": 0, "name": 1}))
         for i in dateIn:
@@ -30,12 +33,12 @@ def getCaptcha(msg):
         # 用户数据：max 最大登录次数 2
         data = {
             # '_id': timeStr,
-            'name': name,
+            'name'    : name,
             'password': None,
-            'captcha': captcha,
-            'time': now_time,
-            'max': 2,
-            }
+            'captcha' : captcha,
+            'time'    : now_time,
+            'max'     : 2,
+        }
         try:
             my_col.update_one({'name': name}, {'$set': data}, True)
             # my_col.insert_one(data)
